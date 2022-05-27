@@ -200,7 +200,7 @@ function dispSpell(spell, index, arr) {
 function disp_phase() {
     document.getElementById("phase").innerHTML = "Lunar Phase: " + phases[data.phase_num] + " Moon";
     spells[data.phase_num].forEach(dispSpell);
-    document.getElementById("boons").innerHTML = "Lunar Boons: " + boons[data.phase_num];
+    document.getElementById("boons").innerHTML = boons[data.phase_num];
     document.getElementById("emp").innerHTML = emp[data.phase_num];
 }
 
