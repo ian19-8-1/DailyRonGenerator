@@ -178,11 +178,11 @@ function combo() {
     }
 }
 
-function gen_season() {
+function rand_season() {
     data.season_num = Math.floor(Math.random() * 4);
 }
 
-function gen_phase() {
+function rand_phase() {
     data.phase_num = Math.floor(Math.random() * 3);
 }
 
@@ -210,9 +210,9 @@ function display() {
     document.getElementById("main").style.display = "block";
 }
 
-function generate() {
-    gen_season();
-    gen_phase();
+function randomize() {
+    rand_season();
+    rand_phase();
     combo();
 
     display();
