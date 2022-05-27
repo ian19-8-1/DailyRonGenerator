@@ -207,7 +207,7 @@ function disp_phase() {
 function display() {
     disp_season();
     disp_phase();
-    document.getElementById("main").style.display = "block";
+    document.getElementById("person").innerHTML = "Personality: " + data.combo_name;
 }
 
 function randomize() {
