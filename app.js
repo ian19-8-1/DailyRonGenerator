@@ -2,8 +2,8 @@
 
 
 
-var seasons = ["Autumn", "Winter", "Spring", "Summer"];
-var steps = [
+const seasons = ["Autumn", "Winter", "Spring", "Summer"];
+const steps = [
     "Immediately after you use your Fey Step, up to two creatures of your choice that you can see within 10 feet of you " +
     "\nmust succeed on a Wisdom saving throw or be charmed by you for 1 minute, or until you or your companions deal any damage to it.", 
 
@@ -16,7 +16,7 @@ var steps = [
     "Immediately after you use your Fey Step, each creature of your choice that you can see within 5 feet of you takes " + 
     "\nfire damage equal to your Charisma modifier (minimum of 1 damage)."
 ];
-var traits = [
+const traits = [
     [
         "If someone is in need, you never withhold aid.", 
         "You share what you have, with little regard to your own needs.", 
@@ -42,7 +42,7 @@ var traits = [
         "You maintain an intimidating front. Better to prevent fights with a show of force than to harm others."
     ]
 ];
-var flaws = [
+const flaws = [
     [
         "You trust others without thought.", 
         "You give to the point that you leave yourself without necessary supplies.", 
@@ -68,14 +68,14 @@ var flaws = [
         "Your fury can carry you through anything."
     ]
 ];
-var phases = ["Full", "New", "Crescent"];
-var spells = [
+const phases = ["Full", "New", "Crescent"];
+const spells = [
     ["Faerie Fire", "Moonbeam", "Death Ward", "Freedom of Movement", "Mass Cure Wounds"], 
     ["Dissonant Whispers", "Darkness", "Bestow Curse", "Evard's Black Tentacles", "Mislead"], 
     ["Sanctuary", "Blindess/Deafness", "Phantom Steed", "Hallucinatory Terrain", "Dream"]
 ];
-var boons = ["Abjuration and Conjuration", "Evocation and Necromancy", "Divination and Transmutation"];
-var emp = [
+const boons = ["Abjuration and Conjuration", "Evocation and Necromancy", "Divination and Transmutation"];
+const emp = [
     "You shed bright light in a 10-foot radius and dim light for an additional 10 feet. In addition, you and " + 
     "creatures of your choice have advantage on saving throws while within the bright light you shed.", 
 
@@ -84,33 +84,55 @@ var emp = [
 
     "You have resistance to necrotic and radiant damage."
 ];
-var lvls = [1, 3, 5, 7, 9];
+const lvls = [1, 3, 5, 7, 9];
+
+var data = {
+    season_num: -1,
+    trait_num: -1,
+    flaw_num: -1,
+    phase_num: -1,
+};
 
 
 
-function generate() {
-    var season_num = Math.floor(Math.random() * 4);
-    var trait_num = Math.floor(Math.random() * 4);
-    var flaw_num = Math.floor(Math.random() * 4);
-    
-    document.getElementById("season").innerHTML = "Season: " + seasons[season_num];
-    document.getElementById("step").innerHTML = steps[season_num];
-    document.getElementById("trait").innerHTML = "(" + (trait_num+1) + ") " + traits[season_num][trait_num];
-    document.getElementById("flaw").innerHTML = "(" + (flaw_num+1) + ") " + flaws[season_num][flaw_num];
+function gen_season() {
+    data.season_num = Math.floor(Math.random() * 4);
+    data.trait_num = Math.floor(Math.random() * 4);
+    data.flaw_num = Math.floor(Math.random() * 4);
+}
 
+function gen_phase() {
+    data.phase_num = Math.floor(Math.random() * 3);
+}
 
-
-    var phase_num = Math.floor(Math.random() * 3);
-    document.getElementById("phase").innerHTML = "Lunar Phase: " + phases[phase_num] + " Moon";
-    document.getElementById("main").style.display = "block";
-
-    spells[phase_num].forEach(dispSpell);
-
-    document.getElementById("boons").innerHTML = "Lunar Boons: " + boons[phase_num];
-
-    document.getElementById("emp").innerHTML = emp[phase_num];
+function disp_season() {
+    document.getElementById("season").innerHTML = "Season: " + seasons[data.season_num];
+    document.getElementById("step").innerHTML = steps[data.season_num];
+    document.getElementById("trait").innerHTML = "(" + (data.trait_num+1) + ") " + traits[data.season_num][data.trait_num];
+    document.getElementById("flaw").innerHTML = "(" + (data.flaw_num+1) + ") " + flaws[data.season_num][data.flaw_num];
 }
 
 function dispSpell(spell, index, arr) {
     document.getElementById("spell"+index).innerHTML = lvls[index] + ": " + spell;
 }
+
+function disp_phase() {
+    document.getElementById("phase").innerHTML = "Lunar Phase: " + phases[data.phase_num] + " Moon";
+    spells[data.phase_num].forEach(dispSpell);
+    document.getElementById("boons").innerHTML = "Lunar Boons: " + boons[data.phase_num];
+    document.getElementById("emp").innerHTML = emp[data.phase_num];
+}
+
+function display() {
+    disp_season();
+    disp_phase();
+    document.getElementById("main").style.display = "block";
+}
+
+function generate() {
+    gen_season();
+    gen_phase();
+
+    display();
+}
+
