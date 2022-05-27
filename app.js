@@ -68,21 +68,21 @@ const flaws = [
         "Your fury can carry you through anything."
     ]
 ];
-const phases = ["Full", "New", "Crescent"];
+const phases = ["Full", "Crescent", "New"];
 const spells = [
     ["Faerie Fire", "Moonbeam", "Death Ward", "Freedom of Movement", "Mass Cure Wounds"], 
+    ["Sanctuary", "Blindess/Deafness", "Phantom Steed", "Hallucinatory Terrain", "Dream"],
     ["Dissonant Whispers", "Darkness", "Bestow Curse", "Evard's Black Tentacles", "Mislead"], 
-    ["Sanctuary", "Blindess/Deafness", "Phantom Steed", "Hallucinatory Terrain", "Dream"]
 ];
-const boons = ["Abjuration and Conjuration", "Evocation and Necromancy", "Divination and Transmutation"];
+const boons = ["Abjuration and Conjuration", "Divination and Transmutation", "Evocation and Necromancy"];
 const emp = [
     "You shed bright light in a 10-foot radius and dim light for an additional 10 feet. In addition, you and " + 
     "creatures of your choice have advantage on saving throws while within the bright light you shed.", 
 
-    "You have advantage on Dexterity (Stealth) checks. In addition, while you are in dim light or darkness, " + 
-    "attack rolls have disadvantage against you.", 
+    "You have resistance to necrotic and radiant damage.", 
 
-    "You have resistance to necrotic and radiant damage."
+    "You have advantage on Dexterity (Stealth) checks. In addition, while you are in dim light or darkness, " + 
+    "attack rolls have disadvantage against you."
 ];
 const lvls = [1, 3, 5, 7, 9];
 
@@ -91,14 +91,95 @@ var data = {
     trait_num: -1,
     flaw_num: -1,
     phase_num: -1,
+    combo_name: ""
 };
 
 
 
+function combo() {
+    if (data.season_num == 0) {         // Autumn
+
+        if (data.phase_num == 0) {          // Full
+            data.combo_name = "Harvest";
+            data.trait_num = 1;
+            data.flaw_num = 3;
+        }
+        else if (data.phase_num == 1) {     // Crescent
+            data.combo_name = "Slumber";
+            data.trait_num = 3;
+            data.flaw_num = 0;
+        }
+        else if (data.phase_num == 2) {     // New
+            data.combo_name = "Hunt";
+            data.trait_num = 0;
+            data.flaw_num = 1;
+        }
+
+    }
+    else if (data.season_num == 1) {    // Winter
+
+        if (data.phase_num == 0) {          // Full
+            data.combo_name = "Hearth";
+            data.trait_num = 1;
+            data.flaw_num = 2;
+        }
+        else if (data.phase_num == 1) {     // Crescent
+            data.combo_name = "Slip";
+            data.trait_num = 2;
+            data.flaw_num = 1;
+        }
+        else if (data.phase_num == 2) {     // New
+            data.combo_name = "Shiver";
+            data.trait_num = 0;
+            data.flaw_num = 0;
+        }
+        
+    }
+    else if (data.season_num == 2) {    // Spring
+
+        if (data.phase_num == 0) {          // Full
+            data.combo_name = "Dance";
+            data.trait_num = 1;
+            data.flaw_num = 3;
+        }
+        else if (data.phase_num == 1) {     // Crescent
+            data.combo_name = "Meadow";
+            data.trait_num = 0;
+            data.flaw_num = 1;
+        }
+        else if (data.phase_num == 2) {     // New
+            data.combo_name = "Song";
+            data.trait_num = 3;
+            data.flaw_num = 2;
+        }
+
+    }
+    else if (data.season_num == 3) {    // Summer
+
+        if (data.phase_num == 0) {          // Full
+            data.combo_name = "Heat";
+            data.trait_num = 2;
+            data.flaw_num = 0;
+        }
+        else if (data.phase_num == 1) {     // Crescent
+            data.combo_name = "Herald";
+            data.trait_num = 3;
+            data.flaw_num = 1;
+        }
+        else if (data.phase_num == 2) {     // New
+            data.combo_name = "Storm";
+            data.trait_num = 1;
+            data.flaw_num = 3;
+        }
+
+    }
+    else {
+        console.log("ERROR in combo(): uninitialized value in data");
+    }
+}
+
 function gen_season() {
     data.season_num = Math.floor(Math.random() * 4);
-    data.trait_num = Math.floor(Math.random() * 4);
-    data.flaw_num = Math.floor(Math.random() * 4);
 }
 
 function gen_phase() {
@@ -108,8 +189,8 @@ function gen_phase() {
 function disp_season() {
     document.getElementById("season").innerHTML = "Season: " + seasons[data.season_num];
     document.getElementById("step").innerHTML = steps[data.season_num];
-    document.getElementById("trait").innerHTML = "(" + (data.trait_num+1) + ") " + traits[data.season_num][data.trait_num];
-    document.getElementById("flaw").innerHTML = "(" + (data.flaw_num+1) + ") " + flaws[data.season_num][data.flaw_num];
+    document.getElementById("trait").innerHTML = traits[data.season_num][data.trait_num];
+    document.getElementById("flaw").innerHTML = flaws[data.season_num][data.flaw_num];
 }
 
 function dispSpell(spell, index, arr) {
@@ -132,6 +213,7 @@ function display() {
 function generate() {
     gen_season();
     gen_phase();
+    combo();
 
     display();
 }
