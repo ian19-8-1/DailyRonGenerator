@@ -91,7 +91,8 @@ var data = {
     trait_num: -1,
     flaw_num: -1,
     phase_num: -1,
-    combo_name: ""
+    combo_name: "", 
+    combo_spell: ""
 };
 
 
@@ -103,16 +104,19 @@ function combo() {
             data.combo_name = "Harvest";
             data.trait_num = 1;
             data.flaw_num = 3;
+            data.combo_spell = "Goodberry";
         }
         else if (data.phase_num == 1) {     // Crescent
             data.combo_name = "Slumber";
             data.trait_num = 3;
             data.flaw_num = 0;
+            data.combo_spell = "Sleep";
         }
         else if (data.phase_num == 2) {     // New
             data.combo_name = "Hunt";
             data.trait_num = 0;
             data.flaw_num = 1;
+            data.combo_spell = "Magic Missile";
         }
 
     }
@@ -122,16 +126,19 @@ function combo() {
             data.combo_name = "Hearth";
             data.trait_num = 1;
             data.flaw_num = 2;
+            data.combo_spell = "Leomund's Tiny Hut";
         }
         else if (data.phase_num == 1) {     // Crescent
             data.combo_name = "Slip";
             data.trait_num = 2;
             data.flaw_num = 1;
+            data.combo_spell = "Grease";
         }
         else if (data.phase_num == 2) {     // New
             data.combo_name = "Shiver";
             data.trait_num = 0;
             data.flaw_num = 0;
+            data.combo_spell = "Ice Storm";
         }
         
     }
@@ -141,16 +148,19 @@ function combo() {
             data.combo_name = "Dance";
             data.trait_num = 1;
             data.flaw_num = 3;
+            data.combo_spell = "Otto's Irresistible Dance";
         }
         else if (data.phase_num == 1) {     // Crescent
             data.combo_name = "Meadow";
             data.trait_num = 0;
             data.flaw_num = 1;
+            data.combo_spell = "Catnap";
         }
         else if (data.phase_num == 2) {     // New
-            data.combo_name = "Song";
+            data.combo_name = "Breeze";
             data.trait_num = 3;
             data.flaw_num = 2;
+            data.combo_spell = "Investiture of Wind";
         }
 
     }
@@ -160,16 +170,19 @@ function combo() {
             data.combo_name = "Heat";
             data.trait_num = 2;
             data.flaw_num = 0;
+            data.combo_spell = "Investiture of Flame";
         }
         else if (data.phase_num == 1) {     // Crescent
             data.combo_name = "Herald";
             data.trait_num = 3;
             data.flaw_num = 1;
+            data.combo_spell = "Gift of Alacrity";
         }
         else if (data.phase_num == 2) {     // New
             data.combo_name = "Storm";
             data.trait_num = 1;
             data.flaw_num = 3;
+            data.combo_spell = "Lightning Bolt";
         }
 
     }
@@ -177,6 +190,7 @@ function combo() {
         console.log("ERROR in combo(): uninitialized value in data");
     }
 }
+
 
 function rand_season() {
     data.season_num = Math.floor(Math.random() * 4);
@@ -186,6 +200,7 @@ function rand_phase() {
     data.phase_num = Math.floor(Math.random() * 3);
 }
 
+
 function disp_season() {
     document.getElementById("season").innerHTML = "Season: " + seasons[data.season_num];
     document.getElementById("step").innerHTML = steps[data.season_num];
@@ -193,15 +208,20 @@ function disp_season() {
     document.getElementById("flaw").innerHTML = flaws[data.season_num][data.flaw_num];
 }
 
-function dispSpell(spell, index, arr) {
+function disp_spell(spell, index, arr) {
     document.getElementById("spell"+index).innerHTML = lvls[index] + ": " + spell;
 }
 
 function disp_phase() {
     document.getElementById("phase").innerHTML = "Lunar Phase: " + phases[data.phase_num] + " Moon";
-    spells[data.phase_num].forEach(dispSpell);
+    spells[data.phase_num].forEach(disp_spell);
     document.getElementById("boons").innerHTML = boons[data.phase_num];
     document.getElementById("emp").innerHTML = emp[data.phase_num];
+}
+
+function disp_combo() {
+    document.getElementById("person").innerHTML = "Personality: " + data.combo_name;
+    document.getElementById("combo_spell").innerHTML = data.combo_spell;
 }
 
 function display() {
@@ -209,8 +229,9 @@ function display() {
 
     disp_season();
     disp_phase();
-    document.getElementById("person").innerHTML = "Personality: " + data.combo_name;
+    disp_combo();
 }
+
 
 function randomize() {
     rand_season();
@@ -218,6 +239,7 @@ function randomize() {
 
     display();
 }
+
 
 function set_season() {
     var season_num = parseInt(document.getElementById("szn_select").value);
@@ -230,6 +252,7 @@ function set_phase() {
     data.phase_num = phase_num;
     display();
 }
+
 
 function cycle() {
     data.season_num = (data.season_num + 1) % 4;

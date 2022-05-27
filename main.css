@@ -8,3 +8,11 @@ body {
 .sub {
     margin-left: 2%;
 }
+
+.sbs {
+    display: inline-block;
+}
+
+h2 {
+    margin-bottom: -2%;
+}

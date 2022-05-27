@@ -12,17 +12,23 @@
     <h1>Daily Ron Generator!</h1>
 
     <div style="margin-bottom: 2%;">
-        <button onclick="randomize()" style="display: inline-block;">RANDOMIZE</button>
-        <button onclick="cycle()" style="display: inline-block;">CYCLE</button>
+        <button onclick="randomize()" class="sbs">RANDOMIZE</button>
+        <button onclick="cycle()" class="sbs">CYCLE</button>
     </div>
 
     <div id="main">
 
-        <h2 id="person">Personality: </h2>
+        <div>
+            <h2 id="person" class="sbs">Personality: </h2>
+        </div>
+        <div class="sub">
+            <h3 class="sbs">Combo Spell: </h3>
+            <p class="sbs" id="combo_spell"></p>
+        </div>
         
         <div>
-            <h2 id="season" style="display: inline-block;">Season: </h2>
-            <form style="display: inline-block; float: right;">
+            <h2 id="season" class="sbs">Season: </h2>
+            <form class="sbs" style="float: right;">
                 <label for="szn_select">Change season to:</label>
                 <select name="szn_select"  id="szn_select" onchange="set_season()">
                     <option disabled selected value></option>
@@ -34,17 +40,21 @@
             </form>
         </div>
         <div class="sub">
-            <h3>Fey Step</h3>
+            <h3>Fey Step: </h3>
             <div class="sub"><p id="step"></p></div>
-            <h3>Personality Trait</h3>
-            <div class="sub"><p id="trait"></p></div>
-            <h3>Flaw</h3>
-            <div class="sub"><p id="flaw"></p></div>
+        </div>
+        <div class="sub">
+            <h3 class="sbs">Personality Trait: </h3>
+            <div class="sbs"><p id="trait"></p></div>
+        </div>
+        <div class="sub">
+            <h3 class="sbs">Flaw: </h3>
+            <div class="sbs"><p id="flaw"></p></div>
         </div>
     
         <div>
-            <h2 id="phase" style="display: inline-block;">Lunar Phase: </h2>
-            <form style="display: inline-block; float: right;">
+            <h2 id="phase" class="sbs">Lunar Phase: </h2>
+            <form class="sbs" style="float: right;">
                 <label for="phz_select">Change phase to:</label>
                 <select name="phz_select"  id="phz_select" onchange="set_phase()">
                     <option disabled selected value></option>
@@ -55,7 +65,7 @@
             </form>
         </div>
         <div class="sub">
-            <h3>Lunar Spells</h3>
+            <h3>Lunar Spells: </h3>
             <div class="sub">
                 <p href="" id="spell0"></p>
                 <p href="" id="spell1"></p>
@@ -64,11 +74,15 @@
                 <p href="" id="spell4"></p>
             </div>
 
-            <h3>Lunar Boons</h3>
-            <p class="sub" id="boons"></p>
+            <div>
+                <h3 class="sbs">Lunar Boons: </h3>
+                <p class="sbs" id="boons"></p>
+            </div>
 
-            <h3>Lunar Empowerment</h3>
-            <p class="sub" id="emp"></p>
+            <div>
+                <h3 class="sbs">Lunar Empowerment: </h3>
+                <p class="sbs" id="emp"></p>
+            </div>
         </div>
 
     </div>
