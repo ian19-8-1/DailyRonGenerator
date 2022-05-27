@@ -231,3 +231,8 @@ function set_phase() {
     display();
 }
 
+function cycle() {
+    data.season_num = (data.season_num + 1) % 4;
+    data.phase_num = (data.phase_num + 1) % 3;
+    display();
+}
