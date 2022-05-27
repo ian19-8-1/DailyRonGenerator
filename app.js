@@ -205,6 +205,8 @@ function disp_phase() {
 }
 
 function display() {
+    combo();
+
     disp_season();
     disp_phase();
     document.getElementById("person").innerHTML = "Personality: " + data.combo_name;
@@ -213,8 +215,19 @@ function display() {
 function randomize() {
     rand_season();
     rand_phase();
-    combo();
 
+    display();
+}
+
+function set_season() {
+    var season_num = parseInt(document.getElementById("szn_select").value);
+    data.season_num = season_num;
+    display();
+}
+
+function set_phase() {
+    var phase_num = parseInt(document.getElementById("phz_select").value);
+    data.phase_num = phase_num;
     display();
 }
 

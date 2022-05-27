@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
+
     <h1>Daily Ron Generator!</h1>
 
     <button onclick="randomize()">RANDOMIZE</button>
@@ -16,7 +17,19 @@
 
         <h2 id="person">Personality: </h2>
         
-        <h2 id="season">Season: </h2>
+        <div>
+            <h2 id="season" style="display: inline-block;">Season: </h2>
+            <form style="display: inline-block; float: right;">
+                <label for="szn_select">Change season to:</label>
+                <select name="szn_select"  id="szn_select" onchange="set_season()">
+                    <option disabled selected value></option>
+                    <option value="2">Spring</option>
+                    <option value="3">Summer</option>
+                    <option value="0">Autumn</option>
+                    <option value="1">Winter</option>
+                </select>
+            </form>
+        </div>
         <div class="sub">
             <h3>Fey Step</h3>
             <div class="sub"><p id="step"></p></div>
@@ -26,7 +39,18 @@
             <div class="sub"><p id="flaw"></p></div>
         </div>
     
-        <h2 id="phase">Lunar Phase: </h2>
+        <div>
+            <h2 id="phase" style="display: inline-block;">Lunar Phase: </h2>
+            <form style="display: inline-block; float: right;">
+                <label for="phz_select">Change phase to:</label>
+                <select name="phz_select"  id="phz_select" onchange="set_phase()">
+                    <option disabled selected value></option>
+                    <option value="0">Full</option>
+                    <option value="1">Crescent</option>
+                    <option value="2">New</option>
+                </select>
+            </form>
+        </div>
         <div class="sub">
             <h3>Lunar Spells</h3>
             <div class="sub">
@@ -43,7 +67,7 @@
             <h3>Lunar Empowerment</h3>
             <p class="sub" id="emp"></p>
         </div>
-        
+
     </div>
 
     <script src="app.js"></script>
