@@ -84,7 +84,6 @@ const emp = [
     "You have advantage on Dexterity (Stealth) checks. In addition, while you are in dim light or darkness, " + 
     "attack rolls have disadvantage against you."
 ];
-const lvls = [1, 3, 5, 7, 9];
 
 var data = {
     season_num: -1,
@@ -209,7 +208,7 @@ function disp_season() {
 }
 
 function disp_spell(spell, index, arr) {
-    document.getElementById("spell"+index).innerHTML = lvls[index] + ": " + spell;
+    document.getElementById("spell"+index).innerHTML = (index+1) + ": " + spell;
 }
 
 function disp_phase() {
