@@ -25,7 +25,7 @@ const traits = [
     ], 
     [
         "The worst case is most likely to occur.", 
-        "You preserve what you have. Better to be hungry today and have food for tomorrow.", 
+        "You happily invite others into the safety of your shelter", 
         "Life is full of dangers, but you are ready for them.", 
         "A penny spent is a penny lost forever."
     ], 
@@ -124,19 +124,19 @@ function combo() {
         if (data.phase_num == 0) {          // Full
             data.combo_name = "Hearth";
             data.trait_num = 1;
-            data.flaw_num = 2;
+            data.flaw_num = 1;
             data.combo_spell = "Leomund's Tiny Hut";
         }
         else if (data.phase_num == 1) {     // Crescent
             data.combo_name = "Slip";
             data.trait_num = 2;
-            data.flaw_num = 1;
+            data.flaw_num = 0;
             data.combo_spell = "Grease";
         }
         else if (data.phase_num == 2) {     // New
             data.combo_name = "Shiver";
             data.trait_num = 0;
-            data.flaw_num = 0;
+            data.flaw_num = 2;
             data.combo_spell = "Ice Storm";
         }
         
@@ -169,7 +169,7 @@ function combo() {
             data.combo_name = "Heat";
             data.trait_num = 2;
             data.flaw_num = 0;
-            data.combo_spell = "Investiture of Flame";
+            data.combo_spell = "Dawn";
         }
         else if (data.phase_num == 1) {     // Crescent
             data.combo_name = "Herald";
@@ -200,35 +200,25 @@ function rand_phase() {
 }
 
 
-function disp_season() {
-    document.getElementById("season").innerHTML = "Season: " + seasons[data.season_num];
-    document.getElementById("step").innerHTML = steps[data.season_num];
-    document.getElementById("trait").innerHTML = traits[data.season_num][data.trait_num];
-    document.getElementById("flaw").innerHTML = flaws[data.season_num][data.flaw_num];
-}
-
 function disp_spell(spell, index, arr) {
     document.getElementById("spell"+index).innerHTML = (index+1) + ": " + spell;
-}
-
-function disp_phase() {
-    document.getElementById("phase").innerHTML = "Lunar Phase: " + phases[data.phase_num] + " Moon";
-    spells[data.phase_num].forEach(disp_spell);
-    document.getElementById("boons").innerHTML = boons[data.phase_num];
-    document.getElementById("emp").innerHTML = emp[data.phase_num];
-}
-
-function disp_combo() {
-    document.getElementById("person").innerHTML = "Personality: " + data.combo_name;
-    document.getElementById("combo_spell").innerHTML = data.combo_spell;
 }
 
 function display() {
     combo();
 
-    disp_season();
-    disp_phase();
-    disp_combo();
+    document.getElementById("season").innerHTML = "Season: " + seasons[data.season_num];
+    document.getElementById("step").innerHTML = steps[data.season_num];
+    document.getElementById("trait").innerHTML = traits[data.season_num][data.trait_num];
+    document.getElementById("flaw").innerHTML = flaws[data.season_num][data.flaw_num];
+
+    document.getElementById("phase").innerHTML = "Lunar Phase: " + phases[data.phase_num] + " Moon";
+    spells[data.phase_num].forEach(disp_spell);
+    document.getElementById("boons").innerHTML = boons[data.phase_num];
+    document.getElementById("emp").innerHTML = emp[data.phase_num];
+
+    document.getElementById("person").innerHTML = "Personality: " + data.combo_name;
+    document.getElementById("combo_spell").innerHTML = data.combo_spell;
 }
 
 
