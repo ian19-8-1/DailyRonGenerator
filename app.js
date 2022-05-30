@@ -166,7 +166,7 @@ function combo() {
     else if (data.season_num == 3) {    // Summer
 
         if (data.phase_num == 0) {          // Full
-            data.combo_name = "Heat";
+            data.combo_name = "Toil";
             data.trait_num = 2;
             data.flaw_num = 0;
             data.combo_spell = "Dawn";
